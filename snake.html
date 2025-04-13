@@ -1,7 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>
+    
+  </title>
+
+
+  <script>
+    var playerName= "Federico";
+  </script>
+  <table class="table is-narrow is-hoverable" id="leaderboard">
+    <thead>
+        <tr>
+            <th class="rank"><abbr title="Position">Ranking</abbr></th>
+            <th class="name">Nombre</th>
+            <th class="symbol">Puntaje</th>
+            <th class="price">Puntaje Máximo</th>
+            
+        </tr>
+        <tr>
+          <th class="rank"><abbr title="Position">1</abbr></th>
+          <th class="name" id="player1name">player1Name</th>
+          <th class="symbol" id="player1Score">0</th>
+          <th class="price">0</th>
+      </tr>
+      <tr>
+        <th class="rank"><abbr title="Position">2</abbr></th>
+        <th class="name" id="player1name">player1Name</th>
+        <th class="symbol" id="player1Score">0</th>
+        <th class="price">0</th>
+    </tr>
+    <tr>
+      <th class="rank"><abbr title="Position">3</abbr></th>
+      <th class="name" id="player1name">player1Name</th>
+      <th class="symbol" id="player1Score">0</th>
+      <th class="price">0</th>
+  </tr>
+  <tr>
+    <th class="rank"><abbr title="Position">4</abbr></th>
+    <th class="name" id="player1name">player1Name</th>
+    <th class="symbol" id="player1Score">0</th>
+    <th class="price">0</th>
+</tr>
+<tr>
+  <th class="rank"><abbr title="Position">5</abbr></th>
+  <th class="name" id="player1name">player1Name</th>
+  <th class="symbol" id="player1Score">0</th>
+  <th class="price">0</th>
+</tr>
+    </thead>
+    <tbody id="cryptocurrencies">
+    </tbody>  
+  </table>
   <style>
   html, body {
     height: 100%;
@@ -17,17 +67,62 @@
   canvas {
     border: 1px solid white;
   }
+  .table {
+            background-color:#ffe08a;
+        }
+        .table thead th {
+            color: #946c00;
+        }
+        .table tbody {
+            background-color: #fffaeb;
+        }
+        #leaderboard #cryptocurrencies tr {
+            display:block;
+            clear: both;
+            position: absolute;
+            -moz-transition-duration: 1s;
+            -webkit-transition-duration: 1s;
+            -ms-transition-duration: 1s;
+        }
+        .rank{
+            width: 60px;
+        }
+        .name{
+            width: 200px;
+        }
+        .symbol{
+            width: 80px;
+        }
+        .price{
+            width: 100px;
+        }
+        .market_cap{
+            width: 150px;
+        }
+        .circulating_supply{
+            width: 170px;
+        }
+        .volume_24h{
+            width: 140px;
+        }
+        .percent_change_24h{
+            width: 100px;
+        }
   </style>
+  
 </head>
 <body>
 <canvas width="400" height="400" id="game"></canvas>
+
+
 <script>
 
+//ranking
 
 
 
 const GAME_NAME= "Snake";
-var playerName= "Federico";
+
 var eventName="";
 var value=1;
 
@@ -238,9 +333,12 @@ socket.onmessage = (mensaje)=>{
   var datos= JSON.parse(mensaje.data);
   console.log("El mensaje es" + mensaje.data);
   console.log(datos[0].players);
-
+var puntajeActual=datos[0].players[0].value;
   console.log("La cuenta es"+ (datos[0].players[0].value));
+  document.getElementById("player1Score").innerHTML=puntajeActual;
 }
+
+document.getElementById("player1name").innerHTML= playerName;
 
 socket.onopen=function(){
   // start the game
