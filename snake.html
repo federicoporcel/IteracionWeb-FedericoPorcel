@@ -133,14 +133,14 @@ function loop() {
       appleCount=appleCount+1;
       console.log(appleCount);
 
-      socket.addEventListener("message", e=>{
+      //socket.addEventListener("message", e=>{
         socket.send(JSON.stringify({
-           "game": "Snake",
-	          "event": "Manzana",
-	          "player": "Federico",
-	          "value": 1
+           game: "Snake",
+	          event: "Manzana",
+	          player: "Federico",
+	          value: 1
         }));
-      });
+      //});
 
     }
 
@@ -207,6 +207,9 @@ document.addEventListener('keydown', function(e) {
         //console.log(message);
       //});
     //});
+    socket.addEventListener("message", function (event) {
+      console.log("Message from server", event.data);
+    })
   }
   // down arrow key
   else if (e.which === 40 && snake.dy === 0) {
