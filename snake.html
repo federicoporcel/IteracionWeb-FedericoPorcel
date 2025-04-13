@@ -231,10 +231,14 @@ socket.addEventListener("message",()=>{
  // console.log("El mensaje es:" )
 })
 
+
+var nombrePlayerRecibido;
+var puntajePlayerRecibido;
 socket.onmessage = (mensaje)=>{
   var datos= JSON.parse(mensaje.data);
   console.log("El mensaje es" + mensaje.data);
   console.log(datos[0].players);
+
   console.log("La cuenta es"+ (datos[0].players[0].value));
 }
 
