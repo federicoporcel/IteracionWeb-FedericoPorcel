@@ -224,8 +224,19 @@ document.addEventListener('keydown', function(e) {
 let socket = new WebSocket("wss://gamehubmanager-ucp2025.azurewebsites.net/ws");
 
 socket.addEventListener("open", () =>{
-  console.log("Conectado");
+  //console.log("Conectado");
 });
+
+socket.addEventListener("message",()=>{
+ // console.log("El mensaje es:" )
+})
+
+socket.onmessage = (mensaje)=>{
+  var datos= JSON.parse(mensaje.data);
+  console.log("El mensaje es" + mensaje.data);
+  console.log(datos[0].events);
+  console.log("La cuenta es"+ (datos[0].events[0].count));
+}
 
 socket.onopen=function(){
   // start the game
