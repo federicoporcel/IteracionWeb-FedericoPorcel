@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8"> 
+<title>Name Storage</title>
+
+
+
+</head>
+
+<body>
+
+<input type="text" placeholder="Nombre" id="nombrePlayer"> <br><br>
+<a href="snake.html"><input type="submit" id="jugar" value="Jugar"  onclick="play()" src="snake.html"> </a>
+
+
+</body>
+
+<script>
+
+function play(){
+    var test = document.getElementById("nombrePlayer").value;
+    
+    localStorage.setItem("playerName", test);
+    alert(localStorage.getElementById("playerName"));
+    console.log(test);
+}
+</script>
+
+</html>
