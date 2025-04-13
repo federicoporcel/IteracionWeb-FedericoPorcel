@@ -22,32 +22,32 @@
         </tr>
         <tr>
           <th class="rank"><abbr title="Position">1</abbr></th>
-          <th class="name" id="player1name">player1Name</th>
+          <th class="name" id="player1Name">player1Name</th>
           <th class="symbol" id="player1Score">0</th>
           <th class="price">0</th>
       </tr>
       <tr>
         <th class="rank"><abbr title="Position">2</abbr></th>
-        <th class="name" id="player1name">player1Name</th>
-        <th class="symbol" id="player1Score">0</th>
+        <th class="name" id="player2Name">player1Name</th>
+        <th class="symbol" id="player2Score">0</th>
         <th class="price">0</th>
     </tr>
     <tr>
       <th class="rank"><abbr title="Position">3</abbr></th>
-      <th class="name" id="player1name">player1Name</th>
-      <th class="symbol" id="player1Score">0</th>
+      <th class="name" id="player3Name">player1Name</th>
+      <th class="symbol" id="player3Score">0</th>
       <th class="price">0</th>
   </tr>
   <tr>
     <th class="rank"><abbr title="Position">4</abbr></th>
-    <th class="name" id="player1name">player1Name</th>
-    <th class="symbol" id="player1Score">0</th>
+    <th class="name" id="player4Name">player1Name</th>
+    <th class="symbol" id="player4Score">0</th>
     <th class="price">0</th>
 </tr>
 <tr>
   <th class="rank"><abbr title="Position">5</abbr></th>
-  <th class="name" id="player1name">player1Name</th>
-  <th class="symbol" id="player1Score">0</th>
+  <th class="name" id="player5Name">player1Name</th>
+  <th class="symbol" id="player5Score">0</th>
   <th class="price">0</th>
 </tr>
     </thead>
@@ -122,7 +122,7 @@
 //ranking
 
 
-
+const misRespuestas = document.querySelector("#respuestas");
 const GAME_NAME= "Snake";
 
 var eventName="";
@@ -162,6 +162,8 @@ var apple = {
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
+
+
 
 // game loop
 function loop() {
@@ -234,7 +236,7 @@ function loop() {
         socket.send(JSON.stringify({
            game: "Snake",
 	          event: "Manzana",
-	          player: "Federico",
+	          player: playerName,
 	          value: 1
         }));
       //});
@@ -264,8 +266,12 @@ function loop() {
         
 function crearJson(player, event, value){
 
-  var json = '{game: "'+GAME_NAME+'", event: "'+event+'", player: "'+player+'" value: "'+value+'}';
-  return JSON.stringify(json);
+  socket.send(JSON.stringify({
+           game: GAME_NAME,
+	          event: event,
+	          player: player,
+	          value: value
+        }));
 
 }
 
@@ -304,9 +310,9 @@ document.addEventListener('keydown', function(e) {
         //console.log(message);
       //});
     //});
-    socket.addEventListener("message", function (event) {
-      console.log("Message from server", event.data);
-    })
+    //socket.addEventListener("message", function (event) {
+      //console.log("Message from server", event.data);
+    //})
   }
   // down arrow key
   else if (e.which === 40 && snake.dy === 0) {
@@ -324,26 +330,41 @@ socket.addEventListener("open", () =>{
   //console.log("Conectado");
 });
 
-socket.addEventListener("message",()=>{
- // console.log("El mensaje es:" )
-})
+async function message (evento) {
+    // Se recibe un mensaje
+    console.log("WebSocket ha recibido un mensaje");
 
+    //const mensajeRecibido = await evento.data.text();
+    // Mostrar mensaje en HTML
+    //misRespuestas.innerHTML = misRespuestas.innerHTML.concat(evento.data, "<br>");
+}
+socket.addEventListener("message",message)
 
+var qseyo;
 var nombrePlayerRecibido;
 var puntajePlayerRecibido;
 socket.onmessage = (mensaje)=>{
   var datos= JSON.parse(mensaje.data);
   console.log("El mensaje es" + mensaje.data);
-  console.log(datos[0].players);
+  console.log("La totalidad de los datos son:"+datos[0].players);
 var puntajeActual=datos[0].players[0].value;
+for (let i = 0; i < datos[0].players.length && i<5; i++) {
+  var idText = "player"+(i+1)+"Name";
+  document.getElementById(idText).innerHTML=datos[0].players[i].eventName;
+  idText= "player"+(i+1)+"Score";
+  document.getElementById(idText).innerHTML=datos[0].players[i].value;
+} 
   console.log("La cuenta es"+ (datos[0].players[0].value));
-  document.getElementById("player1Score").innerHTML=puntajeActual;
+  //document.getElementById("player1Score").innerHTML=puntajeActual;
 }
 
-document.getElementById("player1name").innerHTML= playerName;
+
+
+document.getElementById("player1Name").innerHTML= playerName;
 
 socket.onopen=function(){
   // start the game
+  
   console.log("Started the game");
   requestAnimationFrame(loop);
 }
