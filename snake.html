@@ -22,6 +22,15 @@
 <body>
 <canvas width="400" height="400" id="game"></canvas>
 <script>
+
+
+
+
+const GAME_NAME= "Snake";
+var playerName= "Federico";
+var eventName="";
+var value=1;
+
 var canvas = document.getElementById('game');
 var context = canvas.getContext('2d');
 
@@ -120,8 +129,19 @@ function loop() {
       apple.x = getRandomInt(0, 25) * grid;
       apple.y = getRandomInt(0, 25) * grid;
       console.log('Manzana comida');
+     // value=1;
       appleCount=appleCount+1;
       console.log(appleCount);
+
+      socket.addEventListener("message", e=>{
+        socket.send(JSON.stringify({
+           "game": "Snake",
+	          "event": "Manzana",
+	          "player": "Federico",
+	          "value": 1
+        }));
+      });
+
     }
 
     // check collision with all cells after this one (modified bubble sort)
@@ -144,7 +164,13 @@ function loop() {
         
         appleCount=0;
         
+        
+function crearJson(player, event, value){
 
+  var json = '{game: "'+GAME_NAME+'", event: "'+event+'", player: "'+player+'" value: "'+value+'}';
+  return JSON.stringify(json);
+
+}
 
       }
     }
@@ -175,6 +201,12 @@ document.addEventListener('keydown', function(e) {
     snake.dx = grid;
     snake.dy = 0;
     localStorage.setItem("Tecla", "Derecha");
+    console.log("Prueba");
+    //socket.on("connection",ws=>{
+      //ws.on("message", message=>{
+        //console.log(message);
+      //});
+    //});
   }
   // down arrow key
   else if (e.which === 40 && snake.dy === 0) {
@@ -185,8 +217,19 @@ document.addEventListener('keydown', function(e) {
   console.log('Tecla Presionada');
 });
 
-// start the game
-requestAnimationFrame(loop);
+//const WebSocket = require("ws");
+let socket = new WebSocket("wss://gamehubmanager-ucp2025.azurewebsites.net/ws");
+
+socket.addEventListener("open", () =>{
+  console.log("Conectado");
+});
+
+socket.onopen=function(){
+  // start the game
+  console.log("Started the game");
+  requestAnimationFrame(loop);
+}
 </script>
 </body>
 </html>
+
