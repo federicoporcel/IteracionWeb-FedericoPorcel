@@ -380,15 +380,12 @@ function close () {
           // Cierra la conexión
           console.log("WebSocket cerrado.");
 }
-socket.addEventListener("message",message);
+ socket.addEventListener("message",message);
  socket.addEventListener("error", error);
  socket.addEventListener("close", close);
 
 var nombrePlayerRecibido;
 var puntajePlayerRecibido;
-
-
-
 
 document.getElementById("player1Name").innerHTML= playerName;
 
