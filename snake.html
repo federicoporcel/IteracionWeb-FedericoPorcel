@@ -353,6 +353,7 @@ socket.addEventListener("message",message);
   //console.log("El mensaje es" + mensaje.data);
   //console.log("La totalidad de los datos son:"+datos[0].players);
   jugadores=datos[0].players;
+  console.log("llegue aca");
   jugadores.sort((a,b)=> b.value-a.value);
   console.log(jugadores);
 var puntajeActual=datos[0].players[0].value;
@@ -394,11 +395,11 @@ document.getElementById("player1Name").innerHTML= playerName;
 
 socket.onopen=function(){
   // start the game
-  socket.send(JSON.stringify({
-           game: GAME_NAME,
-	          event: "ActualizarRanking",
-	          player: playerName,
-	          value: 0}));
+  // socket.send(JSON.stringify({
+  //          game: GAME_NAME,
+	//           event: "ActualizarRanking",
+	//           player: playerName,
+	//           value: 0}));
 
   console.log("Started the game");
   requestAnimationFrame(loop);
