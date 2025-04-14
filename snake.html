@@ -12,44 +12,45 @@
     var frameCounter=0;
     var jugadores=[];
   </script>
+  <h1 id="currentPlayerName">Nombre</h1>
   <table class="table is-narrow is-hoverable" id="leaderboard">
     <thead>
         <tr>
             <th class="rank"><abbr title="Position">Ranking</abbr></th>
             <th class="name">Nombre</th>
             <th class="symbol">Puntaje</th>
-            <th class="price">Puntaje Máximo</th>
+            
             
         </tr>
         <tr>
           <th class="rank"><abbr title="Position">1</abbr></th>
           <th class="name" id="player1Name">player1Name</th>
           <th class="symbol" id="player1Score">0</th>
-          <th class="price">0</th>
+          
       </tr>
       <tr>
         <th class="rank"><abbr title="Position">2</abbr></th>
         <th class="name" id="player2Name">player2Name</th>
         <th class="symbol" id="player2Score">0</th>
-        <th class="price">0</th>
+        
     </tr>
     <tr>
       <th class="rank"><abbr title="Position">3</abbr></th>
       <th class="name" id="player3Name">player3Name</th>
       <th class="symbol" id="player3Score">0</th>
-      <th class="price">0</th>
+      
   </tr>
   <tr>
     <th class="rank"><abbr title="Position">4</abbr></th>
     <th class="name" id="player4Name">player4Name</th>
     <th class="symbol" id="player4Score">0</th>
-    <th class="price">0</th>
+    
 </tr>
 <tr>
   <th class="rank"><abbr title="Position">5</abbr></th>
   <th class="name" id="player5Name">player5Name</th>
   <th class="symbol" id="player5Score">0</th>
-  <th class="price">0</th>
+  
 </tr>
     </thead>
     <tbody id="cryptocurrencies">
@@ -342,7 +343,7 @@ let socket = new WebSocket("wss://gamehubmanager-ucp2025.azurewebsites.net/ws");
 socket.addEventListener("open", () =>{
   console.log("Conectado");
 });
-socket.addEventListener("message",message);
+
 
 //socket.addEventListener("EventName", error);
 
@@ -379,7 +380,7 @@ function close () {
           // Cierra la conexión
           console.log("WebSocket cerrado.");
 }
-
+socket.addEventListener("message",message);
  socket.addEventListener("error", error);
  socket.addEventListener("close", close);
 
