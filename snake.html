@@ -9,7 +9,8 @@
   <script>
     var playerName= localStorage.getItem("playerName");
     console.log(playerName);
-    
+    var frameCounter=0;
+    var jugadores=[];
   </script>
   <table class="table is-narrow is-hoverable" id="leaderboard">
     <thead>
@@ -28,25 +29,25 @@
       </tr>
       <tr>
         <th class="rank"><abbr title="Position">2</abbr></th>
-        <th class="name" id="player2Name">player1Name</th>
+        <th class="name" id="player2Name">player2Name</th>
         <th class="symbol" id="player2Score">0</th>
         <th class="price">0</th>
     </tr>
     <tr>
       <th class="rank"><abbr title="Position">3</abbr></th>
-      <th class="name" id="player3Name">player1Name</th>
+      <th class="name" id="player3Name">player3Name</th>
       <th class="symbol" id="player3Score">0</th>
       <th class="price">0</th>
   </tr>
   <tr>
     <th class="rank"><abbr title="Position">4</abbr></th>
-    <th class="name" id="player4Name">player1Name</th>
+    <th class="name" id="player4Name">player4Name</th>
     <th class="symbol" id="player4Score">0</th>
     <th class="price">0</th>
 </tr>
 <tr>
   <th class="rank"><abbr title="Position">5</abbr></th>
-  <th class="name" id="player5Name">player1Name</th>
+  <th class="name" id="player5Name">player5Name</th>
   <th class="symbol" id="player5Score">0</th>
   <th class="price">0</th>
 </tr>
@@ -168,6 +169,17 @@ function getRandomInt(min, max) {
 // game loop
 function loop() {
   requestAnimationFrame(loop);
+  frameCounter=frameCounter+1;
+  if (frameCounter>=300){
+    // socket.send(JSON.stringify({
+    //        game: GAME_NAME,
+	  //         event: "ActualizarRanking",
+	  //         player: playerName,
+	  //         value: 0
+    //     }))
+    frameCounter=0;
+  }
+  
 
   // slow game loop to 15 fps instead of 60 (60/15 = 4)
   if (++count < 4) {
@@ -324,30 +336,27 @@ document.addEventListener('keydown', function(e) {
 });
 
 //const WebSocket = require("ws");
+//const WebSocket= require ('ws');
 let socket = new WebSocket("wss://gamehubmanager-ucp2025.azurewebsites.net/ws");
 
 socket.addEventListener("open", () =>{
-  //console.log("Conectado");
+  console.log("Conectado");
 });
+socket.addEventListener("message",message);
 
-async function message (evento) {
+//socket.addEventListener("EventName", error);
+
+ function message (mensaje) {
     // Se recibe un mensaje
     console.log("WebSocket ha recibido un mensaje");
-
-    //const mensajeRecibido = await evento.data.text();
-    // Mostrar mensaje en HTML
-    //misRespuestas.innerHTML = misRespuestas.innerHTML.concat(evento.data, "<br>");
-}
-socket.addEventListener("message",message)
-
-var qseyo;
-var nombrePlayerRecibido;
-var puntajePlayerRecibido;
-socket.onmessage = (mensaje)=>{
-  var datos= JSON.parse(mensaje.data);
-  console.log("El mensaje es" + mensaje.data);
-  console.log("La totalidad de los datos son:"+datos[0].players);
+    var datos= JSON.parse(mensaje.data);
+  //console.log("El mensaje es" + mensaje.data);
+  //console.log("La totalidad de los datos son:"+datos[0].players);
+  jugadores=datos[0].players;
+  jugadores.sort((a,b)=> b.value-a.value);
+  console.log(jugadores);
 var puntajeActual=datos[0].players[0].value;
+
 for (let i = 0; i < datos[0].players.length && i<5; i++) {
   var idText = "player"+(i+1)+"Name";
   document.getElementById(idText).innerHTML=datos[0].players[i].eventName;
@@ -355,16 +364,42 @@ for (let i = 0; i < datos[0].players.length && i<5; i++) {
   document.getElementById(idText).innerHTML=datos[0].players[i].value;
 } 
   console.log("La cuenta es"+ (datos[0].players[0].value));
-  //document.getElementById("player1Score").innerHTML=puntajeActual;
+
+    //const mensajeRecibido = await evento.data.text();
+    // Mostrar mensaje en HTML
+    //misRespuestas.innerHTML = misRespuestas.innerHTML.concat(evento.data, "<br>");
 }
+function error (evento) {
+          // Ha ocurrido un error
+          console.error("WebSocket ha observado un error: ", evento);
+      }
+
+function close () {
+          // Cierra la conexión
+          console.log("WebSocket cerrado.");
+}
+
+ socket.addEventListener("error", error);
+ socket.addEventListener("close", close);
+
+var nombrePlayerRecibido;
+var puntajePlayerRecibido;
+
 
 
 
 document.getElementById("player1Name").innerHTML= playerName;
 
+
+
 socket.onopen=function(){
   // start the game
-  
+  socket.send(JSON.stringify({
+           game: GAME_NAME,
+	          event: "ActualizarRanking",
+	          player: playerName,
+	          value: 0}));
+
   console.log("Started the game");
   requestAnimationFrame(loop);
 }
