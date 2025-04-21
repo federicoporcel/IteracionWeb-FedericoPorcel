@@ -1,7 +1,10 @@
 {
   "name": "Snake",
-  "theme_color": "#000000",
-  "background_color": "#000000",
+  "theme_color": "#de0858",
+  "background_color": "#1abd33",
   "short_name": "snake",
-  "description": "\"Snake como aplicación Android\""
+  "description": "\"Snake como aplicación Android\"",
+  "categories": [
+    "games"
+  ]
 }
