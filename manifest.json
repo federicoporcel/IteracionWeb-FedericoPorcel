@@ -1,5 +1,9 @@
 {
   "start_url": "/",
+  "dir": "ltr",
+  "lang": "en",
+  "display":"fullscreen",
+
   "name": "Snake",
   "theme_color": "#de0858",
   "background_color": "#1abd33",
@@ -16,5 +20,14 @@
   "display_override": [
     "browser",
     "window-controls-overlay"
-  ]
+  ],
+  "icons": [
+  {
+      "src": "snake snake snaaake.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+  }
+]
+  
 }
