@@ -44,6 +44,14 @@
     "type": "image/jpg",
     "platform": "wide"
   }
-]
+],
+"share_target": {
+  "action": "/handle-shared-content/",
+  "method": "GET",
+  "params": {
+    "title": "title",
+    "url": "url"
+  }
+}
   
 }
