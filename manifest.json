@@ -19,10 +19,7 @@
   "edge_side_panel": {
     "preferred_width": 10
   },
-  "display_override": [
-    "browser",
-    "window-controls-overlay"
-  ],
+
   "icons": [
   {
       "src": "snake snake snaaake.png",
