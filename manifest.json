@@ -4,6 +4,8 @@
   "lang": "en",
   "display":"fullscreen",
 
+  "id": "snake_game",
+  "orientation": "landscape",
   "name": "Snake",
   "theme_color": "#de0858",
   "background_color": "#1abd33",
@@ -27,6 +29,20 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
+  }
+],
+"screenshots" : [
+  {
+    "src": "Capturas\\game_screenshot.png",
+    "sizes": "1280x720",
+    "type": "image/jpg",
+    "platform": "wide"
+  },
+  {
+    "src": "Capturas\name_screenshot.png",
+    "sizes": "1280x720",
+    "type": "image/jpg",
+    "platform": "wide"
   }
 ]
   
