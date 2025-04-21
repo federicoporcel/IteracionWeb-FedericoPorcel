@@ -52,6 +52,13 @@
     "title": "title",
     "url": "url"
   }
-}
+},
+"shortcuts": [
+  {
+    "name": "Jugar",
+    "url": "/snake.html",
+    "description": "Jugar Directamente."
+  }
+]
   
 }
