@@ -1,6 +1,6 @@
 
 
-const CACHE_NAME = 'V3';
+const CACHE_NAME = 'V4';
 const urlsToCache= [
   '/',
   '/index.html',
@@ -10,6 +10,6 @@ const urlsToCache= [
 self.addEventListener('install', async (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => cache.add(urlsToCache))
+      .then((cache) => cache.addAll(urlsToCache))
   );
 });
