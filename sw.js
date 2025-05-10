@@ -3,7 +3,7 @@
 
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
 
-const CACHE = "V10";
+const CACHE = "V11";
 
 // TODO: replace the following with the correct offline fallback page i.e.: const offlineFallbackPage = "offline.html";
 const urlsToCache= [
@@ -23,7 +23,7 @@ self.addEventListener("message", (event) => {
 self.addEventListener('install', async (event) => {
   event.waitUntil(
     caches.open(CACHE)
-      .then((cache) => cache.add(urlToCache))
+      .then((cache) => cache.add(urlsToCache))
   );
 });
 
@@ -46,7 +46,7 @@ self.addEventListener('fetch', (event) => {
       } catch (error) {
 
         const cache = await caches.open(CACHE);
-        const cachedResp = await cache.match(urlToCache);
+        const cachedResp = await cache.match(urlsToCache);
         return cachedResp;
       }
     })());
