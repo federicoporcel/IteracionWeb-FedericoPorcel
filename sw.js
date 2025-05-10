@@ -12,6 +12,8 @@ const urlsToCache= [
   '/snake.html',
 ]
 
+const urlToCache='index.html';
+
 self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {
     self.skipWaiting();
@@ -21,7 +23,7 @@ self.addEventListener("message", (event) => {
 self.addEventListener('install', async (event) => {
   event.waitUntil(
     caches.open(CACHE)
-      .then((cache) => cache.add(urlsToCache))
+      .then((cache) => cache.add(urlToCache))
   );
 });
 
@@ -44,7 +46,7 @@ self.addEventListener('fetch', (event) => {
       } catch (error) {
 
         const cache = await caches.open(CACHE);
-        const cachedResp = await cache.match(urlsToCache);
+        const cachedResp = await cache.match(urlToCache);
         return cachedResp;
       }
     })());
