@@ -35,7 +35,7 @@ function play(){
 
 //
 let installPrompt = null;
-const installButton = document.getElementById("#install");
+const installButton = document.querySelector("#install");
 
 window.addEventListener("beforeinstallprompt", (event) => {
   event.preventDefault();
@@ -59,35 +59,35 @@ function disableInAppInstallPrompt() {
 
 // main.js
 
-window.addEventListener("appinstalled", () => {
-  disableInAppInstallPrompt();
-});
+// window.addEventListener("appinstalled", () => {
+//   disableInAppInstallPrompt();
+// });
 
-function disableInAppInstallPrompt() {
-  installPrompt = null;
-  installButton.setAttribute("hidden", "");
-}
+// function disableInAppInstallPrompt() {
+//   installPrompt = null;
+//   installButton.setAttribute("hidden", "");
+// }
 
-const relatedApps = await navigator.getInstalledRelatedApps();
+// const relatedApps = await navigator.getInstalledRelatedApps();
 
-// Search for a specific installed platform-specific app
-const psApp = relatedApps.find((app) => app.id === "com.example.myapp");
+// // Search for a specific installed platform-specific app
+// const psApp = relatedApps.find((app) => app.id === "com.example.myapp");
 
-if (psApp) {
-  // Update UI as appropriate
-}
+// if (psApp) {
+//   // Update UI as appropriate
+// }
 
-window.addEventListener("beforeinstallprompt", async (event) => {
-  const relatedApps = await navigator.getInstalledRelatedApps();
+// window.addEventListener("beforeinstallprompt", async (event) => {
+//   const relatedApps = await navigator.getInstalledRelatedApps();
 
-  // Search for a specific installed platform-specific app
-  const psApp = relatedApps.find((app) => app.id === "com.example.myapp");
+//   // Search for a specific installed platform-specific app
+//   const psApp = relatedApps.find((app) => app.id === "com.example.myapp");
 
-  if (psApp) {
-    event.preventDefault();
-    // Update UI as appropriate
-  }
-});
+//   if (psApp) {
+//     event.preventDefault();
+//     // Update UI as appropriate
+//   }
+// });
 
 
 </script>
