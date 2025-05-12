@@ -11,8 +11,9 @@
     var playerName= localStorage.getItem("playerName");
     console.log(playerName);
     var frameCounter=0;
-    var jugadores=[];
+    var jugadores=[];    
   </script>
+  <h5 id="onlineText">Modo Actual: Online</h5>
   <h1 id="currentPlayerName">Nombre</h1>
   <table class="table is-narrow is-hoverable" id="leaderboard">
     <thead>
@@ -375,11 +376,16 @@ for (let i = 0; i < datos[0].players.length && i<5; i++) {
 function error (evento) {
           // Ha ocurrido un error
           console.error("WebSocket ha observado un error: ", evento);
+          
       }
 
 function close () {
           // Cierra la conexión
+          document.getElementById("onlineText").innerHTML="Modo Actual: Offline";
           console.log("WebSocket cerrado.");
+            console.log("Started the game");
+          requestAnimationFrame(loop);
+
 }
  socket.addEventListener("message",message);
  socket.addEventListener("error", error);
