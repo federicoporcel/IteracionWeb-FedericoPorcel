@@ -65,7 +65,7 @@
     margin: 0;
   }
 
-h1, h5{
+h1, h3, h5{
     background:white;
     display: flex;
     align-items: center;
@@ -397,9 +397,9 @@ function close () {
           document.getElementById("onlineText").innerHTML="Modo Actual: Offline";
           console.log("WebSocket cerrado.");
             console.log("Started the game");
-            document.getElementById("offlinePlayerScore").removeAttribute("hidden");
+            document.getElementById("leaderboard").hidden=true;
             document.getElementById("offlinePlayerScore").hidden=false;
-            
+
           requestAnimationFrame(loop);
 
 
