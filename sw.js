@@ -3,7 +3,7 @@
 
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
 
-const CACHE = "V16";
+const CACHE = "V17";
 
 // TODO: replace the following with the correct offline fallback page i.e.: const offlineFallbackPage = "offline.html";
 const urlsToCache= [
@@ -20,19 +20,14 @@ self.addEventListener("message", (event) => {
   }
 });
 
-self.addEventListener('install', async (event) => {
-  event.waitUntil(
-    caches.open(CACHE)
-      .then((cache) => cache.add(urlToCache))
-  );
-  console.log("Agregó la primer URL");
-  event.waitUntil(
-    caches.open(CACHE)
-      .then((cache) => cache.add(urlToCache2))
-      
-  );
-  console.log("Agregó la segunda URL");
+self.addEventListener('install', event => {
+    event.waitUntil((async () => {
+        const cache = await caches.open(CACHE);
+        cache.addAll(urlsToCache);
+    })());
 });
+//   console.log("Agregó la segunda URL");
+// });
 
 if (workbox.navigationPreload.isSupported()) {
   workbox.navigationPreload.enable();
@@ -54,11 +49,8 @@ self.addEventListener('fetch', (event) => {
         return networkResp;
       } catch (error) {
 
-        var cache = await caches.open(CACHE);
-        var cachedResp = await cache.match(urlToCache);
-        
-        cache = await caches.open(CACHE);
-         cachedResp = await cache.match(urlToCache2);
+        const cache = await caches.open(CACHE);
+        const cachedResp = await cache.match(urlsToCache);        
         return cachedResp;
       }
     })());
