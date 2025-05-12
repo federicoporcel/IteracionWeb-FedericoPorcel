@@ -50,7 +50,10 @@ self.addEventListener('fetch', (event) => {
       } catch (error) {
 
         const cache = await caches.open(CACHE);
-        const cachedResp = await cache.match(urlsToCache);
+        const cachedResp = await cache.match(urlToCache);
+        
+        cache = await caches.open(CACHE);
+         cachedResp = await cache.match(urlToCache2);
         return cachedResp;
       }
     })());
