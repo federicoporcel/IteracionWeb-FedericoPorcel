@@ -385,10 +385,10 @@ for (let i = 0; i < datos[0].players.length && i<5; i++) {
 function error (evento) {
           // Ha ocurrido un error
           console.error("WebSocket ha observado un error: ", evento);
-                      console.log("Started the game");
-            document.getElementById("offlinePlayerScore").removeAttribute("hidden");
-            document.getElementById("offlinePlayerScore").setAttribute("hidden");
-          requestAnimationFrame(loop);
+          //             console.log("Started the game");
+          //   document.getElementById("offlinePlayerScore").removeAttribute("hidden");
+          //   document.getElementById("offlinePlayerScore").setAttribute("hidden");
+          // requestAnimationFrame(loop);
           
       }
 
@@ -398,7 +398,8 @@ function close () {
           console.log("WebSocket cerrado.");
             console.log("Started the game");
             document.getElementById("offlinePlayerScore").removeAttribute("hidden");
-            document.getElementById("offlinePlayerScore").setAttribute("hidden");
+            document.getElementById("offlinePlayerScore").hidden=false;
+            
           requestAnimationFrame(loop);
 
 
