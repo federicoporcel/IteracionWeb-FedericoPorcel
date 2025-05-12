@@ -15,6 +15,7 @@
   </script>
   <h5 id="onlineText">Modo Actual: Online</h5>
   <h1 id="currentPlayerName">Nombre</h1>
+  <h3 id="offlinePlayerScore" hidden>0</h3>
   <table class="table is-narrow is-hoverable" id="leaderboard">
     <thead>
         <tr>
@@ -250,10 +251,11 @@ function loop() {
       apple.x = getRandomInt(0, 25) * grid;
       apple.y = getRandomInt(0, 25) * grid;
       console.log('Manzana comida');
+      
      // value=1;
       appleCount=appleCount+1;
       console.log(appleCount);
-
+      document.getElementById("offlinePlayerScore").innerHTML=appleCount;
       //socket.addEventListener("message", e=>{
         socket.send(JSON.stringify({
            game: "Snake",
@@ -391,7 +393,10 @@ function close () {
           document.getElementById("onlineText").innerHTML="Modo Actual: Offline";
           console.log("WebSocket cerrado.");
             console.log("Started the game");
+            document.getElementById("offlinePlayerScore").removeAttribute("hidden");
+            document.getElementById("offlinePlayerScore").setAttribute("hidden");
           requestAnimationFrame(loop);
+
 
 }
  socket.addEventListener("message",message);
