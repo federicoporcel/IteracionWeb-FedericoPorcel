@@ -467,7 +467,7 @@ window.addEventListener("deviceorientation", function(e){
 
   document.getElementById('alpha').innerHTML ="Alpha: "+ e.alpha.toFixed(1)+"°"; //angle of motion around the Z axis
   //alphaRotation=e.alpha.toFixed;
-  if(e.alpha.toFixed<60){
+  if(e.alpha.toFixed(1)<60){
       snake.dx = grid;
     snake.dy = 0;}
    document.getElementById('beta').innerHTML = "Beta: "+e.beta.toFixed(1)+"°"; //angle of motion around the X axis
