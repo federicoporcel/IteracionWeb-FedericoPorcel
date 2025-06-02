@@ -17,6 +17,7 @@
   <h5 id="alpha">alpha</h5>
   <h5 id="beta">beta</h5>
   <h5 id="gamma">gamma</h5>
+  <h5 id="alphaRotation">alphaRotation</h5>
   <h5 id="onlineText">Modo Actual: Online</h5>
   <h1 id="currentPlayerName">Nombre</h1>
   <h3 id="offlinePlayerScore" hidden>0</h3>
@@ -194,6 +195,7 @@ function loop() {
     //     }))
     frameCounter=0;
     if(alphaRotation<60){
+      document.getElementById("alphaRotation").innerHTML="Morite Javascript";
       snake.dx = grid;
     snake.dy = 0;}
   }
