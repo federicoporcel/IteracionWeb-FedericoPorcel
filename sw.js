@@ -7,7 +7,7 @@ const CACHE = "V18";
 
 // TODO: replace the following with the correct offline fallback page i.e.: const offlineFallbackPage = "offline.html";
 const urlsToCache= [
-  '/',
+  '/',  
   '/index.html',
   '/snake.html',
 ]

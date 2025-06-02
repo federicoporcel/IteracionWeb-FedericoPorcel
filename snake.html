@@ -395,6 +395,7 @@ function error (evento) {
 
 function close () {
           // Cierra la conexión
+          gyroscope.start();
           document.getElementById("onlineText").innerHTML="Modo Actual: Offline";
           console.log("WebSocket cerrado.");
             console.log("Started the game");
@@ -405,6 +406,9 @@ function close () {
 
 
 }
+
+
+
  socket.addEventListener("message",message);
  socket.addEventListener("error", error);
  socket.addEventListener("close", close);
@@ -413,6 +417,14 @@ var nombrePlayerRecibido;
 var puntajePlayerRecibido;
 
 document.getElementById("player1Name").innerHTML= playerName;
+
+let gyroscope = new Gyroscope({ frequency: 60 });
+
+gyroscope.addEventListener("reading", (e) => {
+  console.log(`Angular velocity along the X-axis ${gyroscope.x}`);
+  console.log(`Angular velocity along the Y-axis ${gyroscope.y}`);
+  console.log(`Angular velocity along the Z-axis ${gyroscope.z}`);
+});
 
 
 
@@ -423,7 +435,7 @@ socket.onopen=function(){
 	//           event: "ActualizarRanking",
 	//           player: playerName,
 	//           value: 0}));
-
+gyroscope.start();
   console.log("Started the game");
   requestAnimationFrame(loop);
 }
