@@ -395,6 +395,7 @@ function error (evento) {
 
 function close () {
           // Cierra la conexión
+          let gyroscope = new Gyroscope({ frequency: 60 });
           gyroscope.start();
           document.getElementById("onlineText").innerHTML="Modo Actual: Offline";
           console.log("WebSocket cerrado.");
@@ -418,7 +419,7 @@ var puntajePlayerRecibido;
 
 document.getElementById("player1Name").innerHTML= playerName;
 
-let gyroscope = new Gyroscope({ frequency: 60 });
+
 
 gyroscope.addEventListener("reading", (e) => {
   console.log(`Angular velocity along the X-axis ${gyroscope.x}`);
@@ -435,6 +436,7 @@ socket.onopen=function(){
 	//           event: "ActualizarRanking",
 	//           player: playerName,
 	//           value: 0}));
+  let gyroscope = new Gyroscope({ frequency: 60 });
 gyroscope.start();
   console.log("Started the game");
   requestAnimationFrame(loop);
