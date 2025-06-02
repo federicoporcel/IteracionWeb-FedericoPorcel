@@ -12,10 +12,11 @@
     console.log(playerName);
     var frameCounter=0;
     var jugadores=[];    
+    var alphaRotation=90;
   </script>
   <h5 id="alpha">alpha</h5>
-  <h5 id="beta">alpha</h5>
-  <h5 id="gamma">alpha</h5>
+  <h5 id="beta">beta</h5>
+  <h5 id="gamma">gamma</h5>
   <h5 id="onlineText">Modo Actual: Online</h5>
   <h1 id="currentPlayerName">Nombre</h1>
   <h3 id="offlinePlayerScore" hidden>0</h3>
@@ -464,11 +465,14 @@ window.addEventListener("deviceorientation", function(e){
 
   
 
-  document.getElementById('alpha').innerHTML = e.alpha.toFixed(1)+"°"; //angle of motion around the Z axis
+  document.getElementById('alpha').innerHTML ="Alpha: "+ e.alpha.toFixed(1)+"°"; //angle of motion around the Z axis
+  alphaRotation=e.alpha.toFixed;
+  if(alphaRotation<60){
+      snake.dx = grid;
+    snake.dy = 0;}
+   document.getElementById('beta').innerHTML = "Beta: "+e.beta.toFixed(1)+"°"; //angle of motion around the X axis
 
-   document.getElementById('beta').innerHTML = e.beta.toFixed(1)+"°"; //angle of motion around the X axis
-
-   document.getElementById('gamma').innerHTML = e.gamma.toFixed(1)+"°"; //angle of motion around the Y axis
+   document.getElementById('gamma').innerHTML = "Gamma: "+e.gamma.toFixed(1)+"°"; //angle of motion around the Y axis
 
   // document.getElementById('orientation').innerHTML = Math.abs(e.beta) > Math.abs(e.gamma) ? "portrait" : "landscape";  
 
