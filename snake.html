@@ -184,6 +184,9 @@ function getRandomInt(min, max) {
 
 // game loop
 function loop() {
+  if(alphaRotation<80){
+      document.getElementById("alphaRotation").innerHTML="Morite Javascript";
+      snake.dy = -grid;
   requestAnimationFrame(loop);
   frameCounter=frameCounter+1;
   if (frameCounter>=300){
@@ -194,9 +197,7 @@ function loop() {
 	  //         value: 0
     //     }))
     frameCounter=0;
-    if(alphaRotation<60){
-      document.getElementById("alphaRotation").innerHTML="Morite Javascript";
-      snake.dy = -grid;
+    
     snake.dx = 0;}
   }
   
