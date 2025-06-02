@@ -194,10 +194,10 @@ function loop() {
 	  //         value: 0
     //     }))
     frameCounter=0;
-    // if(alphaRotation<60){
-    //   document.getElementById("alphaRotation").innerHTML="Morite Javascript";
-    //   snake.dy = -grid;
-    // snake.dx = 0;}
+    if(alphaRotation<60){
+      document.getElementById("alphaRotation").innerHTML="Morite Javascript";
+      snake.dy = -grid;
+    snake.dx = 0;}
   }
   
 
@@ -475,9 +475,9 @@ window.addEventListener("deviceorientation", function(e){
   // if(e.alpha.toFixed(1)<60){
   //     snake.dx = grid;
   //   snake.dy = 0;}
-  if(alphaRotation<60){
-      document.getElementById("alphaRotation").innerHTML="Morite Javascript";
-      snake.dy = -grid;
+  // if(alphaRotation<60){
+  //     document.getElementById("alphaRotation").innerHTML="Morite Javascript";
+  //     snake.dy = -grid;
    document.getElementById('beta').innerHTML = "Beta: "+e.beta.toFixed(1)+"°"; //angle of motion around the X axis
 
    document.getElementById('gamma').innerHTML = "Gamma: "+e.gamma.toFixed(1)+"°"; //angle of motion around the Y axis
