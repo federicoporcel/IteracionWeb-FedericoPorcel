@@ -13,6 +13,7 @@
     var frameCounter=0;
     var jugadores=[];    
     var alphaRotation=90;
+    var horizontal=true;
   </script>
   <h5 id="alpha">alpha</h5>
   <h5 id="beta">beta</h5>
@@ -195,13 +196,29 @@ function loop() {
     //     }))
     frameCounter=0;
     if(alphaRotation<60){
+      if(horizontal===true){
       document.getElementById("alphaRotation").innerHTML="Morite Javascript";
       snake.dy = -grid;
+    horizontal=false;}
+      else{
+          snake.dx = -grid;
+    snake.dy = 0;
+    horizontal=true;
+      }
     snake.dx = 0;}
     if(alphaRotation>120){
+      if(horizontal===true){
       document.getElementById("alphaRotation").innerHTML="Morite Javascript";
       snake.dy = grid;
-    snake.dx = 0;}
+    snake.dx = 0;
+    horizontal=false;
+    }else{
+         snake.dx = grid;
+    snake.dy = 0;
+    horizontal=true;
+    }
+  }
+
   }
   
 
