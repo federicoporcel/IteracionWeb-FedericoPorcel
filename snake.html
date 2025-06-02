@@ -421,7 +421,7 @@ var puntajePlayerRecibido;
 document.getElementById("player1Name").innerHTML= playerName;
 
 
-gyroscope.start();
+//gyroscope.start();
 gyroscope.addEventListener("reading", (e) => {
   console.log(`Angular velocity along the X-axis ${gyroscope.x}`);
   document.getElementById("onlineText").innerHTML= gyroscope.x;
