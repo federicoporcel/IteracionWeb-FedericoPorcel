@@ -352,6 +352,7 @@ document.addEventListener('keydown', function(e) {
 //const WebSocket= require ('ws');
 let socket = new WebSocket("wss://gamehubmanager-ucp2025.azurewebsites.net/ws");
 let gyroscope = new Gyroscope({ frequency: 60 });
+gyroscope.start();
 
 socket.addEventListener("open", () =>{
   console.log("Conectado");
