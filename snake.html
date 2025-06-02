@@ -7,7 +7,7 @@
 
 
   <script>
-    let gyroscope = new Gyroscope({ frequency: 60 });
+    
     var playerName= localStorage.getItem("playerName");
     console.log(playerName);
     var frameCounter=0;
@@ -351,6 +351,7 @@ document.addEventListener('keydown', function(e) {
 //const WebSocket = require("ws");
 //const WebSocket= require ('ws');
 let socket = new WebSocket("wss://gamehubmanager-ucp2025.azurewebsites.net/ws");
+let gyroscope = new Gyroscope({ frequency: 60 });
 
 socket.addEventListener("open", () =>{
   console.log("Conectado");
@@ -395,8 +396,7 @@ function error (evento) {
 
 function close () {
           // Cierra la conexión
-          let gyroscope = new Gyroscope({ frequency: 60 });
-          gyroscope.start();
+          
           document.getElementById("onlineText").innerHTML="Modo Actual: Offline";
           console.log("WebSocket cerrado.");
             console.log("Started the game");
@@ -436,8 +436,7 @@ socket.onopen=function(){
 	//           event: "ActualizarRanking",
 	//           player: playerName,
 	//           value: 0}));
-  let gyroscope = new Gyroscope({ frequency: 60 });
-gyroscope.start();
+ 
   console.log("Started the game");
   requestAnimationFrame(loop);
 }
