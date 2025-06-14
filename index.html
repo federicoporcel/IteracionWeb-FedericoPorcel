@@ -16,6 +16,7 @@
 <input type="text" placeholder="Nombre" id="nombrePlayer"> <br><br>
 <a href="snake.html"><input type="submit" id="jugar" value="Jugar"  onclick="play()" src="snake.html"> </a>
 <button id="install" hidden>Install</button>
+<button id="vibrate">vibrateTest</button>
 
 </body>
 
@@ -56,7 +57,11 @@ function disableInAppInstallPrompt() {
   installPrompt = null;
   installButton.setAttribute("hidden", "");
 }
+const vibrate = document.getElementById('vibrate')
 
+vibrate.addEventListener('pointerdown', event => {
+  navigator.vibrate(200);
+});
 // main.js
 
 // window.addEventListener("appinstalled", () => {
