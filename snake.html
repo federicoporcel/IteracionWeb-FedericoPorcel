@@ -195,7 +195,7 @@ function loop() {
 	  //         value: 0
     //     }))
     frameCounter=0;
-    if(alphaRotation<60){
+    if(alphaRotation<30){
       if(horizontal===true){
       document.getElementById("alphaRotation").innerHTML="Morite Javascript";
       snake.dy = -grid;
@@ -206,7 +206,7 @@ function loop() {
     horizontal=true;
       }
     snake.dx = 0;}
-    if(alphaRotation>120){
+    if(alphaRotation>90){
       if(horizontal===true){
       document.getElementById("alphaRotation").innerHTML="Morite Javascript";
       snake.dy = grid;
@@ -517,7 +517,7 @@ socket.onopen=function(){
 	//           value: 0}));
   navigator.vibrate(1000);
   console.log("Version con vibrate");
- //getOrientation();
+ getOrientation();
   console.log("Started the game");
   requestAnimationFrame(loop);
 }
