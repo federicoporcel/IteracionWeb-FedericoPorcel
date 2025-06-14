@@ -515,6 +515,7 @@ socket.onopen=function(){
 	//           event: "ActualizarRanking",
 	//           player: playerName,
 	//           value: 0}));
+  navigator.vibrate(1000);
  getOrientation();
   console.log("Started the game");
   requestAnimationFrame(loop);
