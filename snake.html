@@ -285,6 +285,7 @@ function loop() {
      // value=1;
       appleCount=appleCount+1;
       console.log(appleCount);
+      navigator.vibrate(1000);
       document.getElementById("offlinePlayerScore").innerHTML=appleCount;
       //socket.addEventListener("message", e=>{
         socket.send(JSON.stringify({
