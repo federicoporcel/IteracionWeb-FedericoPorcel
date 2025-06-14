@@ -195,29 +195,29 @@ function loop() {
 	  //         value: 0
     //     }))
     frameCounter=0;
-    if(alphaRotation<30){
-      if(horizontal===true){
-      document.getElementById("alphaRotation").innerHTML="Morite Javascript";
-      snake.dy = -grid;
-    horizontal=false;}
-      else{
-          snake.dx = -grid;
-    snake.dy = 0;
-    horizontal=true;
-      }
-    snake.dx = 0;}
-    if(alphaRotation>90){
-      if(horizontal===true){
-      document.getElementById("alphaRotation").innerHTML="Morite Javascript";
-      snake.dy = grid;
-    snake.dx = 0;
-    horizontal=false;
-    }else{
-         snake.dx = grid;
-    snake.dy = 0;
-    horizontal=true;
-    }
-  }
+  //   if(alphaRotation<30){
+  //     if(horizontal===true){
+  //     document.getElementById("alphaRotation").innerHTML="Morite Javascript";
+  //     snake.dy = -grid;
+  //   horizontal=false;}
+  //     else{
+  //         snake.dx = -grid;
+  //   snake.dy = 0;
+  //   horizontal=true;
+  //     }
+  //   snake.dx = 0;}
+  //   if(alphaRotation>90){
+  //     if(horizontal===true){
+  //     document.getElementById("alphaRotation").innerHTML="Morite Javascript";
+  //     snake.dy = grid;
+  //   snake.dx = 0;
+  //   horizontal=false;
+  //   }else{
+  //        snake.dx = grid;
+  //   snake.dy = 0;
+  //   horizontal=true;
+  //   }
+  // }
 
   }
   
@@ -344,19 +344,19 @@ document.addEventListener('keydown', function(e) {
   // shouldn't let you collide with your own body)
   
   // left arrow key
-  if (e.which === 37 && snake.dx === 0) {
+  if ((e.which === 37||alphaRotation>90) && snake.dx === 0) {
     snake.dx = -grid;
     snake.dy = 0;
      localStorage.setItem("Tecla", "Izquierda");
   }
   // up arrow key
-  else if (e.which === 38 && snake.dy === 0) {
+  else if ((e.which === 38 ||alphaRotation>90) && snake.dy === 0) {
     snake.dy = -grid;
     snake.dx = 0;
     localStorage.setItem("Tecla", "Arriba");
   }
   // right arrow key
-  else if (e.which === 39 && snake.dx === 0) {
+  else if ((e.which === 39||alphaRotation<30) && snake.dx === 0) {
     snake.dx = grid;
     snake.dy = 0;
     localStorage.setItem("Tecla", "Derecha");
@@ -371,7 +371,7 @@ document.addEventListener('keydown', function(e) {
     //})
   }
   // down arrow key
-  else if (e.which === 40 && snake.dy === 0) {
+  else if ((e.which === 40||alphaRotation<30) && snake.dy === 0) {
     snake.dy = grid;
     snake.dx = 0;
     localStorage.setItem("Tecla", "Abajo");
