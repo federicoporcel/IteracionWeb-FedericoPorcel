@@ -496,8 +496,8 @@ window.addEventListener("deviceorientation", function(e){
   
 
   document.getElementById('alpha').innerHTML ="Alpha: "+ e.alpha.toFixed(1)+"°"; //angle of motion around the Z axis
-  alphaRotation=e.alpha.toFixed(1);
-  document.getElementById("alphaRotation").innerHTML=alphaRotation;
+  
+  
   // if(e.alpha.toFixed(1)<60){
   //     snake.dx = grid;
   //   snake.dy = 0;}
@@ -507,7 +507,8 @@ window.addEventListener("deviceorientation", function(e){
    document.getElementById('beta').innerHTML = "Beta: "+e.beta.toFixed(1)+"°"; //angle of motion around the X axis
 
    document.getElementById('gamma').innerHTML = "Gamma: "+e.gamma.toFixed(1)+"°"; //angle of motion around the Y axis
-
+   alphaRotation=e.gamma.toFixed(1);
+    document.getElementById("alphaRotation").innerHTML=alphaRotation;
   // document.getElementById('orientation').innerHTML = Math.abs(e.beta) > Math.abs(e.gamma) ? "portrait" : "landscape";  
 
 });
