@@ -195,17 +195,23 @@ function loop() {
 	  //         value: 0
     //     }))
     frameCounter=0;
-    if(alphaRotation<30){
+
+
+  }
+  
+
+      if(alphaRotation<30){
       if(horizontal===true){
       document.getElementById("alphaRotation").innerHTML="Morite Javascript";
       snake.dy = -grid;
+      snake.dx = 0;
     horizontal=false;}
       else{
           snake.dx = -grid;
     snake.dy = 0;
     horizontal=true;
       }
-    snake.dx = 0;}
+    }
     if(alphaRotation>90){
       if(horizontal===true){
       document.getElementById("alphaRotation").innerHTML="Morite Javascript";
@@ -218,9 +224,6 @@ function loop() {
     horizontal=true;
     }
   }
-
-  }
-  
 
   // slow game loop to 15 fps instead of 60 (60/15 = 4)
   if (++count < 4) {
