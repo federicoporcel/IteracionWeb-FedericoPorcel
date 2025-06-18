@@ -201,6 +201,7 @@ function loop() {
   
 
       if(alphaRotation<30){
+        
       if(horizontal===true){
       // document.getElementById("alphaRotation").innerHTML="Morite Javascript";
       snake.dy = -grid;
@@ -209,7 +210,7 @@ function loop() {
       else{
           snake.dx = -grid;
     snake.dy = 0;
-    horizontal=true;
+    horizontal=fakse;
       }
     }
     if(alphaRotation>90){
@@ -217,7 +218,7 @@ function loop() {
       //document.getElementById("alphaRotation").innerHTML="Morite Javascript";
       snake.dy = grid;
     snake.dx = 0;
-    horizontal=false;
+    horizontal=true;
     }else{
          snake.dx = grid;
     snake.dy = 0;
