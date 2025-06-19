@@ -289,7 +289,7 @@ function loop() {
      // value=1;
       appleCount=appleCount+1;
       console.log(appleCount);
-      navigator.vibrate(1000);
+      navigator.vibrate(200);
       document.getElementById("offlinePlayerScore").innerHTML=appleCount;
       //socket.addEventListener("message", e=>{
         socket.send(JSON.stringify({
@@ -521,7 +521,7 @@ socket.onopen=function(){
 	//           event: "ActualizarRanking",
 	//           player: playerName,
 	//           value: 0}));
-  navigator.vibrate(1000);
+  navigator.vibrate(200);
   console.log("Version con vibrate");
  getOrientation();
   console.log("Started the game");
