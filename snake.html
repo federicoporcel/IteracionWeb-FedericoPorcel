@@ -488,7 +488,7 @@ async function getOrientation(){
 }
 
  function vibrar(ms){
-  navigator.vibrate(ms);
+  window.navigator.vibrate(ms);
  }
 
 window.addEventListener("deviceorientation", function(e){
@@ -524,7 +524,7 @@ socket.onopen=function(){
 	//           event: "ActualizarRanking",
 	//           player: playerName,
 	//           value: 0}));
-  vibrar(200);
+  vibrar(2000);
   console.log("Version con vibrate");
  //getOrientation();
   console.log("Started the game");
